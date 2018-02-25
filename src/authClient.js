@@ -1,4 +1,3 @@
-import storage from './storage';
 import {
   AUTH_LOGIN,
   AUTH_LOGOUT,

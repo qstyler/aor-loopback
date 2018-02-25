@@ -80,7 +80,7 @@ export default (apiUrl, httpClient = fetchJson) => {
       }
       case UPDATE:
         url = `${apiUrl}/${resource}/${params.id}`;
-        options.method = 'PATCH';
+        options.method = (resource.split('/').length >= 2) ? 'PUT' : 'PATCH';
         options.body = JSON.stringify(params.data);
         break;
       case CREATE:
