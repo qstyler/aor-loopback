@@ -1,6 +1,6 @@
 {
-  "name": "aor-loopback",
-  "version": "1.3.1",
+  "name": "loopback-aor-auth",
+  "version": "1.0.0",
   "description": "Loopback-style REST Client for Admin-on-rest, the frontend framework for building admin applications on top of REST services",
   "main": "lib/index.js",
   "scripts": {
@@ -16,11 +16,12 @@
     "babel-cli": "^6.23.0",
     "babel-core": "^6.23.1",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-plugin-async-to-promises": "^1.0.5",
     "babel-preset-es2015": "^6.22.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kimkha/aor-loopback.git"
+    "url": "git+https://github.com/qstyler/loopback-aor-auth.git"
   },
   "keywords": [
     "react",
@@ -28,10 +29,10 @@
     "loopback",
     "rest-client"
   ],
-  "author": "Nguyen Kim Kha",
+  "author": "Konstantin Bodnia",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kimkha/aor-loopback/issues"
+    "url": "https://github.com/qstyler/loopback-aor-auth/issues"
   },
-  "homepage": "https://github.com/kimkha/aor-loopback#readme"
+  "homepage": "https://github.com/qstyler/loopback-aor-auth#readme"
 }

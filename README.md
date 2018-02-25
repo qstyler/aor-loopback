@@ -12,11 +12,11 @@ Because of recent changes of **admin-on-rest**, this module will only support ve
 
 ## How to use
 
-1. `yarn add aor-loopback`
+1. `yarn add loopback-aor-auth`
 2. On your `App.js`, add this:
 
 ```
-import loopbackRestClient from 'aor-loopback';
+import loopbackRestClient from 'loopback-aor-auth';
 
 ...
 
@@ -26,7 +26,7 @@ import loopbackRestClient from 'aor-loopback';
 3. If you want this module handle authentication, add this:
 
 ```
-import loopbackRestClient, {authClient} from 'aor-loopback';
+import loopbackRestClient, {authClient} from 'loopback-aor-auth';
 
 ...
 

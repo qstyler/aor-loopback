@@ -1,46 +1,25 @@
 import storage from './storage';
+import {
+  AUTH_LOGIN,
+  AUTH_LOGOUT,
+  AUTH_ERROR,
+  AUTH_CHECK,
+  AUTH_GET_PERMISSIONS
+} from './methods';
 
 export const authClient = (loginApiUrl, noAccessPage = '/login') => {
 
-    return (type, params) => {
-        if (type === 'AUTH_LOGIN') {
-            const request = new Request(loginApiUrl, {
-                method: 'POST',
-                body: JSON.stringify(params),
-                headers: new Headers({ 'Content-Type': 'application/json' }),
-            });
-            return fetch(request)
-                .then(response => {
-                    if (response.status < 200 || response.status >= 300) {
-                        throw new Error(response.statusText);
-                    }
-                    return response.json();
-                })
-                .then(({ ttl, ...data }) => {
-                    storage.save('lbtoken', data, ttl);
-                });
-        }
-        if (type === 'AUTH_LOGOUT') {
-            storage.remove('lbtoken');
-            return Promise.resolve();
-        }
-        if (type === 'AUTH_ERROR') {
-            const status  = params.message.status;
-            if (status === 401 || status === 403) {
-                storage.remove('lbtoken');
-                return Promise.reject();
-            }
-            return Promise.resolve();
-        }
-        if (type === 'AUTH_CHECK') {
-            const token = storage.load('lbtoken');
-            if (token && token.id) {
-                return Promise.resolve();
-            } else {
-                storage.remove('lbtoken');
-                return Promise.reject({ redirectTo: noAccessPage });
-            }
-        }
-        return Promise.reject('Unkown method');
-    };
+  return async (type, params) => {
+    if (type === 'AUTH_LOGIN') return AUTH_LOGIN(params, loginApiUrl);
+
+    if (type === 'AUTH_LOGOUT') return AUTH_LOGOUT();
+
+    if (type === 'AUTH_ERROR') return AUTH_ERROR(params);
+
+    if (type === 'AUTH_CHECK') return AUTH_CHECK(noAccessPage);
+
+    if (type === 'AUTH_GET_PERMISSIONS') return AUTH_GET_PERMISSIONS();
+
+    return Promise.resolve();
+  };
 };
